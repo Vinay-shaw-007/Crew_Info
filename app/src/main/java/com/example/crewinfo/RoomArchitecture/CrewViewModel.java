@@ -28,9 +28,6 @@ public class CrewViewModel extends AndroidViewModel {
     public void insert(CrewEntity entity){
         repository.insert(entity);
     }
-    public void update(CrewEntity entity){
-        repository.update(entity);
-    }
     public void delete(CrewEntity entity){
         repository.delete(entity);
     }

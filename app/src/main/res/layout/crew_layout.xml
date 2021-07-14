@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="#66E1D7D7"
+        android:background="@color/white"
         android:padding="5dp">
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/crew_image"

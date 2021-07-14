@@ -7,11 +7,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.crewinfo.MainActivity;
 import com.example.crewinfo.R;
 import com.example.crewinfo.RoomArchitecture.CrewEntity;
 
@@ -89,6 +87,5 @@ public class CrewAdapter extends RecyclerView.Adapter<CrewAdapter.CrewViewHolder
     }
     public interface OnCrewClicked{
         void OnItemClicked(CrewEntity entity);
-        void OndeleteCrew(CrewEntity entity);
     }
 }

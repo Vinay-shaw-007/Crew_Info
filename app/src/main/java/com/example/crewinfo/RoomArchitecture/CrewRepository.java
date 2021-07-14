@@ -6,23 +6,18 @@ import android.util.Log;
 import androidx.lifecycle.LiveData;
 
 import com.android.volley.Request;
-import com.android.volley.Response;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.example.crewinfo.MySingleton;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CrewRepository {
     private static final String TAG = "CREW_INFO";
     private final CrewDao crewDao;
     private final LiveData<List<CrewEntity>> allCrews;
-    private final List<CrewEntity> newCrew = new ArrayList<>();
-    private List<CrewEntity> roomDatabaseCrew;
     private final Application application;
     CrewRepository(Application application){
         this.application = application;
@@ -36,9 +31,6 @@ public class CrewRepository {
     void insert(CrewEntity entity){
         CrewDatabase.databaseWriteExecutor.execute(() -> crewDao.insert(entity));
     }
-    void update(CrewEntity entity){
-        CrewDatabase.databaseWriteExecutor.execute(() -> crewDao.update(entity));
-    }
     void delete(CrewEntity entity){
         CrewDatabase.databaseWriteExecutor.execute(() -> crewDao.delete(entity));
     }
@@ -50,9 +42,7 @@ public class CrewRepository {
         CrewDatabase.databaseWriteExecutor.execute(this::fetchData);
     }
     void fetchData(){
-        newCrew.clear();
         String url = "https://api.spacexdata.com/v4/crew";
-        // get request queue
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, response -> {
             for (int i = 0; i < response.length(); i++){
                 try {
@@ -67,7 +57,6 @@ public class CrewRepository {
                     CrewEntity crewEntity = new CrewEntity(id, name, agency, wikipedia, status, image);
                     Log.d(TAG, "fetchJSONData: "+crewEntity);
                         insert(crewEntity);
-                    newCrew.add(crewEntity);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

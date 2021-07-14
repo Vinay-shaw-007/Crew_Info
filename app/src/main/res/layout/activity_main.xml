@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="#66E1D7D7"
     tools:context=".MainActivity">
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefresh"
@@ -13,7 +13,8 @@
             android:id="@+id/rvCrew"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:listitem="@layout/crew_layout" />
+            tools:listitem="@layout/crew_layout"
+            android:scrollbars="vertical"/>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </RelativeLayout>

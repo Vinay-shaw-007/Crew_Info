@@ -50,7 +50,6 @@ public class MainActivity extends AppCompatActivity implements CrewAdapter.OnCre
             public void onSwiped(@NonNull @NotNull RecyclerView.ViewHolder viewHolder, int direction) {
                 CrewEntity entity = (CrewEntity) viewHolder.itemView.getTag();
                 viewModel.delete(entity);
-//                mAdapter.notifyDataSetChanged();
             }
         }).attachToRecyclerView(mRecyclerView);
     }
@@ -79,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements CrewAdapter.OnCre
     private void setViewModel() {
         viewModel = new ViewModelProvider(this).get(CrewViewModel.class);
         viewModel.getAllCrews().observe(this, crewEntities -> {
-//            Log.d("CREW_INFO", "onChanged: updated size = "+crewEntities.size());
+            Log.d("CREW_INFO", "onChanged: updated = "+crewEntities);
             if (crewEntities != null)
                 mAdapter.setCrewInfo(crewEntities);
         });
@@ -104,12 +103,5 @@ public class MainActivity extends AppCompatActivity implements CrewAdapter.OnCre
         CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
         CustomTabsIntent customTabsIntent = builder.build();
         customTabsIntent.launchUrl(this, Uri.parse(entity.getWikipedia()));
-    }
-
-    @Override
-    public void OndeleteCrew(CrewEntity entity) {
-        mAdapter.notifyDataSetChanged();
-        viewModel.delete(entity);
-
     }
 }
